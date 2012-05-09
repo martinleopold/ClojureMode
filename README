@@ -3,10 +3,12 @@ Clojure Mode for Processing (www.processing.org)
 Uses Clojure 1.4.0 (clojure.org)
 
 * You need Processing 2.0a5 or later, we built trunk from SVN.
-* You need Apache Ant to build.
+* The pre-compiled bundle resides in dist. Put the the folder ClojureMode into your processing modes folder (typically a folder named "modes" inside your sketchbook folder). (Re-)start Processing and select Clojure from the modes drop-down.
+
+* You build this yourself you need Apache Ant 
 * Set properties in build.xml
     * Set the path to your processing jars (core.jar, pde.jar)
-    * If you want to automatically install the mode (target: install ), set the path to your modes folder (typically a folder named "modes" inside your sketchbook folder)
+    * If you want to automatically install the mode (target: install ), set the path to your modes folder
     * If you want to run processing after building (target: run), set the path to your processing executable.
 
 * Ant Targets:
