@@ -59,7 +59,7 @@
         <java-data xmlns="http://www.netbeans.org/ns/freeform-project-java/3">
             <compilation-unit>
                 <package-root>src</package-root>
-                <classpath mode="compile">/Users/mlg/Documents/NetBeansProjects/p5-svn/svn/processing/build/macosx/work/Processing.app/Contents/Resources/Java/pde.jar:/Users/mlg/Documents/NetBeansProjects/p5-svn/svn/processing/build/macosx/work/Processing.app/Contents/Resources/Java/core.jar:lib/clojure-1.4.0.jar</classpath>
+                <classpath mode="compile">/Users/mlg/Documents/NetBeansProjects/p5-svn/trunk/processing/build/macosx/work/Processing.app/Contents/Resources/Java/pde.jar:/Users/mlg/Documents/NetBeansProjects/p5-svn/trunk/processing/build/macosx/work/Processing.app/Contents/Resources/Java/core.jar:lib/clojure-1.4.0.jar</classpath>
                 <source-level>1.6</source-level>
             </compilation-unit>
         </java-data>

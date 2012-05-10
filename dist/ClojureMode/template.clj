@@ -8,17 +8,17 @@
 
 (def p
   (proxy [PApplet] []
-    (setup [] 
+    (setup []
       (println "setup")
-      (. this size 300 300)
+      (.size this 300 300)
     )
-    (draw [] 
-      (println (. this frameCount))
-      (. this background 0)
-      (def size (pulsedSize (. this frameCount) (. this width) 4))
-      (. this fill size)
-      (. this ellipse (/ (. this width) 2) (/ (. this height) 2) size size)
+    (draw []
+      (println (.frameCount this))
+      (.background this 0)
+      (def size (pulsedSize (.frameCount this) (.width this) 4))
+      (.fill this size)
+      (.ellipse this (/ (.width this) 2) (/ (.height this) 2) size size)
     )
 ))
 
-(. p runSketch)
+(.runSketch p)
