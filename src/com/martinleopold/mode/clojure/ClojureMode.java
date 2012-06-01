@@ -12,13 +12,13 @@ import processing.mode.java.runner.Runner;
  */
 public class ClojureMode extends JavaMode {
     String template = "";
-    
+
     public ClojureMode(Base base, File folder) {
         super(base, folder);
-	
+
 	// load tempate
 	try {
-	    File templateFile = new File(getContentFile("template.clj").getAbsolutePath()); 
+	    File templateFile = new File(getContentFile("template.clj").getAbsolutePath());
 	    BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(templateFile), "UTF-8"));
 	    int ch;
 	    while ((ch = reader.read()) != -1) {
@@ -42,25 +42,25 @@ public class ClojureMode extends JavaMode {
     @Override
     public Runner handleRun(Sketch sketch, RunnerListener listener) throws SketchException {
         //System.out.println("ClojureMode.handleRun()...");
-        
+
         String code = sketch.getMainProgram();
-        
+
         /*
          * launch a vm that runs:
 	 * java -cp clojure.jar clojure.main -e expression #  evaluate expression
          * java -cp clojure.jar clojure.main - #  pipe in script over std.in
          * java -cp clojure.jar clojure.main /path/file  & give a script file
-         * 
+         *
          */
-        
+
         // Could not locate clojure/core__init.class or clojure/core.clj on classpath
         //https://groups.google.com/forum/?fromgroups#!topic/clojure/Aa04E9aJRog
         //Thread.currentThread().setContextClassLoader(this.getClass().getClassLoader());
-	
+
 	//eval string expression
         //clojure.main.main(new String[] {"-e", code});
-	
-	
+
+
 	// create a file from code and run it
 	// this runs in the same process/vm and kills the pde when the sketch window is closed
 	/*
@@ -76,9 +76,9 @@ public class ClojureMode extends JavaMode {
 	   throw new SketchException(e.getMessage());
 	}
 	*/
-        
+
         ClojureBuild build = new ClojureBuild(sketch);
-        String appletClassName = build.build();
+        String appletClassName = build.build(false);
         if (appletClassName != null) {
             final Runner runtime = new ClojureRunner(build, listener);
             new Thread(new Runnable() {
@@ -91,8 +91,8 @@ public class ClojureMode extends JavaMode {
         }
         return null;
     }
-    
-    
+
+
     @Override
     public Editor createEditor(Base base, String path, EditorState state) {
         Editor editor = super.createEditor(base, path, state);

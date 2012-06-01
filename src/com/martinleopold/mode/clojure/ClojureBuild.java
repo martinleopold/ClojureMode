@@ -19,16 +19,16 @@ import processing.mode.java.JavaBuild;
  */
 class ClojureBuild extends JavaBuild {
     String clojureFile = "";
-    
+
     public ClojureBuild(Sketch sketch) {
         super(sketch);
     }
-    
+
     @Override
-    public String build(File srcFolder, File binFolder) throws SketchException {
+    public String build(File srcFolder, File binFolder, boolean sizeWarning) throws SketchException {
         this.srcFolder = srcFolder;
         this.binFolder = binFolder;
-	
+
         // escape all newlines to make single line string
         String code = sketch.getMainProgram();
 
@@ -47,26 +47,26 @@ class ClojureBuild extends JavaBuild {
 	} catch (Exception e) {
 	   throw new SketchException(e.getMessage());
 	}
-	
+
         String classNameFound = sketch.getName();
 	//sketchClassName = classNameFound;
         return classNameFound;
     }
-    
+
     public String getClojureFile() {
 	return clojureFile;
     }
-	
+
 	@Override
     public String getClassPath() {
         String classPath = binFolder.getAbsolutePath();
-	
+
         // clojure.jar
         classPath += File.pathSeparator + sketch.getMode().getContentFile("mode/clojure-1.4.0.jar").getAbsolutePath();
 
         // regular classpath
         String javaClassPath = System.getProperty("java.class.path");
-        
+
         // Remove quotes if any.. A messy (and frequent) Windows problem
         if (javaClassPath.startsWith("\"") && javaClassPath.endsWith("\"")) {
             javaClassPath = javaClassPath.substring(1, javaClassPath.length() - 1);
